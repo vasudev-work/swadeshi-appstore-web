@@ -137,6 +137,18 @@
        letter-spacing:.6px;padding:10px;border-radius:999px;margin:14px 0 4px}
   [hidden]{display:none!important}
   .brand{display:none}
+  html[data-theme="black"]{--bg:#000;--surf:#0A0A0A;--surf2:#141414;--line:#242424;--fg:#fff;--mut:#C6CBD1}
+  .rowchips{display:flex;flex-wrap:wrap;gap:8px}
+  .rowchips .chip{padding:8px 15px;font-size:13px}
+  .devrow{display:flex;align-items:center;gap:13px}
+  .dav{width:48px;height:48px;border-radius:14px;background:var(--brand);color:#fff;display:flex;
+       align-items:center;justify-content:center;font-weight:800;font-size:17px;flex:none}
+  .catrow{display:flex;align-items:center;gap:13px;padding:13px 0;border-bottom:1px solid var(--line)}
+  .catrow:last-child{border-bottom:0}
+  .cav{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+       font-weight:800;font-size:15px;color:#fff;flex:none}
+  .catrow .cn{flex:1;min-width:0;font-size:14px;font-weight:600}
+  .catrow .cc{color:var(--mut);font-size:12.5px;flex:none}
 
   /* ================= laptop / desktop ================= */
   @media (min-width:900px){
@@ -194,6 +206,7 @@
       <button class="chip" data-chip="fintech">Fintech</button>
       <button class="chip" data-chip="social">Social</button>
       <button class="chip" data-chip="games">Games</button>
+      <button class="chip" data-chip="cats">Categories</button>
     </div>
 
     <div class="promos">
@@ -245,10 +258,45 @@
     <div class="prose">
       <h3>Saved apps <span id="savedN" style="color:var(--brand2)"></span></h3>
       <div id="savedList"><p>Tap Save on any app card to keep it here. Stored on this device only.</p></div>
+      <p style="margin-top:11px"><button class="btn" id="clearSaved" style="max-width:220px">Clear saved apps</button></p>
     </div>
     <div class="prose">
       <h3>Appearance</h3>
       <p>Theme is <b id="themeName">dark</b>. Tap the moon in the top bar to switch. The choice is remembered on this device.</p>
+    </div>
+    <div class="prose">
+      <h3>Appearance</h3>
+      <p style="margin:0 0 9px">Theme</p>
+      <div class="rowchips" id="themeChips">
+        <button class="chip" data-th="system">System</button>
+        <button class="chip on" data-th="dark">Dark</button>
+        <button class="chip" data-th="light">Light</button>
+        <button class="chip" data-th="black">Black</button>
+      </div>
+      <p style="margin:16px 0 9px">Accent colour</p>
+      <div class="rowchips" id="accentChips">
+        <button class="chip on" data-ac="0" style="background:#01875F;border-color:#01875F;color:#fff">Green</button>
+        <button class="chip" data-ac="1" style="background:#EF6C00;border-color:#EF6C00;color:#fff">Saffron</button>
+        <button class="chip" data-ac="2" style="background:#1A237E;border-color:#1A237E;color:#fff">Indigo</button>
+      </div>
+    </div>
+    <div class="prose">
+      <h3>Developer</h3>
+      <div class="devrow"><span class="dav">VD</span>
+        <div><b>Vasudev Dangaya</b><div class="lsub">Independent developer &middot; India</div></div></div>
+      <p style="margin-top:13px"><a href="mailto:vasudev.work@rediffmail.com">vasudev.work@rediffmail.com</a></p>
+      <p><a href="https://github.com/vasudev-work" target="_blank" rel="noopener">github.com/vasudev-work</a></p>
+    </div>
+    <div class="prose">
+      <h3>Send a tip on UPI</h3>
+      <p>UPI ID <b>vasudevupi@upi</b></p>
+      <p><button class="btn" data-copy="vasudevupi@upi" style="max-width:200px">Copy UPI ID</button></p>
+      <p><a href="upi://pay?pa=vasudevupi@upi&amp;pn=Vasudev&amp;cu=INR">Pay with a UPI app</a></p>
+    </div>
+    <div class="prose">
+      <h3>Legal</h3>
+      <p><a href="legal.html">Privacy policy, terms, refund, cookie, accessibility, security and responsible disclosure</a></p>
+      <p><a href="https://github.com/vasudev-work/swadeshi-apps/issues/new" target="_blank" rel="noopener">Add an Indian app we missed</a></p>
     </div>
     <div class="prose" id="about">
       <h3>Check my phone</h3>
@@ -366,7 +414,34 @@ const CHIP_CAT = {
   games: 'Gaming & Esports'
 };
 
+const CAT_COLORS = ['#01875F','#EF6C00','#7B1FA2','#F4511E','#00897B','#D81B60','#5E35B1','#546E7A','#00897B','#FB8C00','#E53935','#F9A825','#546E7A','#C62828','#2E7D32'];
+
+function catRow(c, n, i){
+  const col = CAT_COLORS[i % CAT_COLORS.length];
+  return '<a class="catrow" href="#" data-gocat="' + esc(c) + '">' +
+    '<span class="cav" style="background:' + col + '">' + esc(c.charAt(0).toUpperCase()) + '</span>' +
+    '<span class="cn">' + esc(c) + '</span>' +
+    '<span class="cc">' + n + '</span><span class="chev">&#8250;</span></a>';
+}
+
+function renderCats(){
+  const counts = {};
+  APPS.forEach(a => { counts[a.c] = (counts[a.c] || 0) + 1; });
+  const list = Object.keys(counts).sort((x, y) => counts[y] - counts[x]);
+  const play = {};
+  APPS.forEach(a => { if (a.s) play[a.s] = (play[a.s] || 0) + 1; });
+  const plist = Object.keys(play).sort((x, y) => play[y] - play[x]).slice(0, 30);
+
+  document.getElementById('secTitle').textContent = 'All categories';
+  document.getElementById('carousel').innerHTML =
+    '<div class="prose" style="width:100%">' + list.map((c, i) => catRow(c, counts[c], i)).join('') + '</div>';
+  document.getElementById('suggested').innerHTML =
+    '<div class="sec"><h2>Play categories</h2><span class="go"></span></div>' +
+    '<div class="prose">' + plist.map((c, i) => catRow(c, play[c], i + 3)).join('') + '</div>';
+}
+
 function renderHome(){
+  if (state.chip === 'cats') { renderCats(); return; }
   const c = state.chip === 'top' ? GOVT_CAT : CHIP_CAT[state.chip];
   const title = state.chip === 'top' ? 'Government apps & citizen services'
               : state.chip === 'govt' ? 'Government apps & citizen services'
@@ -428,6 +503,19 @@ function show(view){
 }
 
 document.querySelectorAll('.nav').forEach(n => n.addEventListener('click', () => show(n.dataset.view)));
+
+document.addEventListener('click', e => {
+  const g = e.target.closest('[data-gocat]');
+  if (!g) return;
+  e.preventDefault();
+  const c = g.dataset.gocat;
+  const hits = APPS.filter(a => a.c === c);
+  document.getElementById('secTitle').textContent = c;
+  document.getElementById('carousel').innerHTML =
+    '<div class="prose" style="width:100%">' + hits.slice(0, 60).map(lrow).join('') + '</div>';
+  document.getElementById('suggested').innerHTML = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
 document.getElementById('chips').addEventListener('click', e => {
   const b = e.target.closest('.chip'); if (!b) return;
@@ -499,17 +587,64 @@ osSheet.addEventListener('click', e => {
 
 // ---- theme ----
 const root = document.documentElement;
-const t = localStorage.getItem('sw-theme');
-if (t) root.dataset.theme = t;
-function paintTheme(){
-  document.getElementById('themeName').textContent = root.dataset.theme;
-  const m = document.querySelector('meta[name=theme-color]');
-  if (m) m.content = root.dataset.theme === 'dark' ? '#121212' : '#F6F7F9';
+const AC = [['#01875F','#00A173'], ['#EF6C00','#FB8C00'], ['#1A237E','#283593']];
+let themePref = localStorage.getItem('sw-theme') || 'dark';
+let accentPref = parseInt(localStorage.getItem('sw-accent') || '0', 10);
+const mq = window.matchMedia('(prefers-color-scheme: dark)');
+
+function resolvedTheme(){
+  if (themePref === 'system') return mq.matches ? 'dark' : 'light';
+  return themePref;
 }
+function paintTheme(){
+  root.dataset.theme = resolvedTheme();
+  document.querySelectorAll('#themeChips .chip').forEach(c => c.classList.toggle('on', c.dataset.th === themePref));
+  document.querySelectorAll('#accentChips .chip').forEach(c => c.classList.toggle('on', +c.dataset.ac === accentPref));
+  const nm = document.getElementById('themeName');
+  if (nm) nm.textContent = themePref === 'system' ? 'system (' + resolvedTheme() + ')' : themePref;
+  const m = document.querySelector('meta[name=theme-color]');
+  if (m) m.content = resolvedTheme() === 'black' ? '#000000' : (resolvedTheme() === 'dark' ? '#121212' : '#F6F7F9');
+}
+function paintAccent(){
+  const a = AC[accentPref] || AC[0];
+  root.style.setProperty('--brand', a[0]);
+  root.style.setProperty('--brand2', a[1]);
+}
+mq.addEventListener('change', () => { if (themePref === 'system') paintTheme(); });
+
 document.getElementById('themeBtn').addEventListener('click', () => {
-  root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
-  localStorage.setItem('sw-theme', root.dataset.theme);
+  themePref = resolvedTheme() === 'dark' ? 'light' : 'dark';
+  localStorage.setItem('sw-theme', themePref);
   paintTheme();
+});
+document.querySelectorAll('#themeChips .chip').forEach(c => c.addEventListener('click', () => {
+  themePref = c.dataset.th;
+  localStorage.setItem('sw-theme', themePref);
+  paintTheme();
+}));
+document.querySelectorAll('#accentChips .chip').forEach(c => c.addEventListener('click', () => {
+  accentPref = +c.dataset.ac;
+  localStorage.setItem('sw-accent', accentPref);
+  paintAccent(); paintTheme();
+}));
+
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-copy]');
+  if (!b) return;
+  e.preventDefault();
+  const val = b.dataset.copy;
+  const done = () => { const o = b.textContent; b.textContent = 'Copied'; setTimeout(() => b.textContent = o, 1200); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(val).then(done).catch(done);
+  else {
+    const t = document.createElement('textarea'); t.value = val; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); } catch (err) {}
+    t.remove(); done();
+  }
+});
+
+const cs = document.getElementById('clearSaved');
+if (cs) cs.addEventListener('click', () => {
+  saved.clear(); localStorage.setItem('sw-saved', '[]'); renderSaved(); renderHome();
 });
 
 document.getElementById('checkPhone').addEventListener('click', e => {
@@ -518,7 +653,7 @@ document.getElementById('checkPhone').addEventListener('click', e => {
   document.getElementById('about').scrollIntoView({ behavior: 'smooth', block: 'center' });
 });
 
-renderHome(); renderGovt(); renderBooks(); paintOs(); paintTheme();
+renderHome(); renderGovt(); renderBooks(); paintOs(); paintAccent(); paintTheme();
 </script>
 </body>
 </html>

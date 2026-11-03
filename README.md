@@ -34,6 +34,15 @@ Each app card carries:
 
 Only Open, Govt and Package point at a page we can verify. Indus, MS Store and Linux are **searches**, because we have no confirmed listing data for those stores. Nothing here claims an app exists on a store we have not checked.
 
+
+## What else the page carries (mirrors the app)
+
+- **Categories** chip - every category with its app count, plus the Play categories, tap to filter
+- **You tab** - theme (System, Dark, Light, Black), accent colour (Green, Saffron, Indigo), saved apps with a clear button
+- **Developer card** - name, email, GitHub
+- **Send a tip on UPI** - UPI id with copy, and a `upi://` link
+- **Legal** - `legal.html` with the same seven documents the app ships: privacy, terms, refund, cookie, accessibility, security, responsible disclosure
+
 ## What it does not do
 
 - It cannot read the apps installed on your phone. That only works inside the Android app, and the page says so on the "Check my phone" card.
