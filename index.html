@@ -508,7 +508,9 @@ function findAlt(q){
   for (const a of ALTS) {
     const keys = a.keys.split('|');
     for (const k of keys) {
-      if (t === k || (k.length > 3 && t.includes(k))) return a;
+      if (t === k) return a;
+      if (k.length >= 4 && t.includes(k)) return a;
+      if (t.length >= 4 && k.startsWith(t)) return a;
     }
   }
   return null;
