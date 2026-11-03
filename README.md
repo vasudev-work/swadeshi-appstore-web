@@ -20,6 +20,20 @@ Same shape as the Android app:
 - **Five-tab bottom bar**: Govt Apps, Apps, Search, Books, You
 - **Choose your OS** sheet: All platforms, Android, macOS, Windows, Linux. Only Android has data, and the page says so instead of showing empty results
 
+
+## Card buttons
+
+Each app card carries:
+
+- **Open** - the official Play listing, or the website when no listing is confirmed
+- **Indus** - Indus Appstore search for that app (Indus now redirects to PhonePe Appstore)
+- **Govt** - the Gov.in AppStore page, shown only for the apps that have one, greyed out otherwise
+- **Package** - copies the package id. Greyed out when the id is not confirmed
+- **MS Store** - Microsoft Store search
+- **Linux** - Flathub search
+
+Only Open, Govt and Package point at a page we can verify. Indus, MS Store and Linux are **searches**, because we have no confirmed listing data for those stores. Nothing here claims an app exists on a store we have not checked.
+
 ## What it does not do
 
 - It cannot read the apps installed on your phone. That only works inside the Android app, and the page says so on the "Check my phone" card.
