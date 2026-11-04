@@ -219,6 +219,11 @@
        font-weight:800;font-size:15px;color:#fff;flex:none}
   .catrow .cn{flex:1;min-width:0;font-size:14px;font-weight:600}
   .catrow .cc{color:var(--mut);font-size:12.5px;flex:none}
+  @media(min-width:900px){
+    #carousel > .prose, #suggested > .prose{grid-column:1 / -1}
+    .catgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 32px;align-items:start}
+    .catgrid .catrow:nth-last-child(-n+2){border-bottom:0}
+  }
 </style>
 </head>
 <body>
@@ -662,10 +667,10 @@ function renderCats(){
   const plist = Object.keys(play).sort((x, y) => play[y] - play[x]).slice(0, 30);
   document.getElementById('secTitle').textContent = 'All categories';
   document.getElementById('carousel').innerHTML =
-    '<div class="prose" style="width:100%">' + list.map((c, i) => catRow(c, counts[c], i)).join('') + '</div>';
+    '<div class="prose catgrid" style="width:100%">' + list.map((c, i) => catRow(c, counts[c], i)).join('') + '</div>';
   document.getElementById('suggested').innerHTML =
     '<div class="sec"><h2>Play categories</h2><span class="go"></span></div>' +
-    '<div class="prose">' + plist.map((c, i) => catRow(c, play[c], i + 3)).join('') + '</div>';
+    '<div class="prose catgrid">' + plist.map((c, i) => catRow(c, play[c], i + 3)).join('') + '</div>';
 }
 document.addEventListener('click', e => {
   const g = e.target.closest('[data-gocat]');
