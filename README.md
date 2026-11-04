@@ -34,6 +34,16 @@ Each app card carries:
 
 Only Open, Govt and Package point at a page we can verify. Indus, MS Store and Linux are **searches**, because we have no confirmed listing data for those stores. Nothing here claims an app exists on a store we have not checked.
 
+
+## Report and submit by email
+
+Both flows go straight to the developer's inbox. No form endpoint, no server, no account.
+
+- **Report this app** - open any app, pick a reason (not Indian, privacy, cloned, malware, inappropriate), add a note, submit. Opens the mail app with subject `App report: <app>` and the same machine-readable body the Android app sends.
+- **Add an Indian app** - the second card on the home screen, or Contribute in the You tab. Subject `App submission for Swadeshi Appstore`, body carries name, package (read from the store link), category, developer and notes.
+
+Address: vasudev.work@rediffmail.com
+
 ## What it does not do
 
 - It cannot read the apps installed on your phone. That only works inside the Android app, and the page says so on the "Check my phone" card.
