@@ -34,26 +34,6 @@ Each app card carries:
 
 Only Open, Govt and Package point at a page we can verify. Indus, MS Store and Linux are **searches**, because we have no confirmed listing data for those stores. Nothing here claims an app exists on a store we have not checked.
 
-
-## What else the page carries (mirrors the app)
-
-- **Categories** chip - every category with its app count, plus the Play categories, tap to filter
-- **You tab** - theme (System, Dark, Light, Black), accent colour (Green, Saffron, Indigo), saved apps with a clear button
-- **Developer card** - name, email, GitHub
-- **Send a tip on UPI** - UPI id with copy, and a `upi://` link
-- **Legal** - `legal.html` with the same seven documents the app ships: privacy, terms, refund, cookie, accessibility, security, responsible disclosure
-
-
-## Search with alternatives
-
-Searching a foreign app name shows a green "TRY A MADE IN INDIA ALTERNATIVE" card, then a "Made in India alternatives" section, then the other Indian apps that matched. The mapping is the same 39 pairs the Android app ships.
-
-Apps with no verified icon get a coloured letter tile instead of an empty square.
-
-## Removed from the list
-
-Three entries were dropped because they did not belong: MX Player (now owned by Amazon) and two placeholder rows named after foreign products.
-
 ## What it does not do
 
 - It cannot read the apps installed on your phone. That only works inside the Android app, and the page says so on the "Check my phone" card.
