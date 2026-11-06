@@ -236,6 +236,18 @@
   .fobox b{color:#F9A825;font-size:13px;display:block;margin-bottom:5px}
   .fobox p{margin:0 0 4px;font-size:12.5px;color:var(--fg);line-height:1.45}
   .fobox span{display:block;font-size:12px;color:var(--mut)}
+  .dlcard{display:flex;align-items:center;gap:14px;background:var(--surf);border:1.5px solid var(--brand);
+          border-radius:20px;padding:15px;margin-bottom:11px}
+  .dlcard .dlogo{width:52px;height:52px;border-radius:15px;background:var(--brand);color:#fff;flex:none;
+                 display:flex;align-items:center;justify-content:center;font-weight:800;font-size:21px}
+  .dlcard .dc{min-width:0;flex:1}
+  .dlcard b{display:block;font-size:15px;margin-bottom:2px}
+  .dlcard .dm{color:var(--mut);font-size:12.5px;display:block;line-height:1.4}
+  .dlbtn{background:var(--brand);color:#fff;border:0;border-radius:12px;padding:11px 16px;
+         font-size:13px;font-weight:700;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+  .dlbtn:hover{background:var(--brand2)}
+  .topdl{display:flex;align-items:center;gap:6px;background:var(--brand);color:#fff;border:0;
+         border-radius:999px;padding:8px 14px;font-size:12.5px;font-weight:700;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -243,6 +255,7 @@
 <div class="top">
   <h1>Swadeshi Appstore</h1>
   <button class="ospill" id="osBtn">Android <span style="opacity:.6">&#9662;</span></button>
+  <a class="topdl" href="https://github.com/vasudev-work/swadeshi-store-android/releases/download/v1.0/swadeshi-store.apk" target="_blank" rel="noopener" title="Download the Android app">Get app</a>
   <button class="rnd" id="themeBtn" title="Theme" aria-label="Switch theme">
     <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
   </button>
@@ -273,6 +286,14 @@
       <span class="chev">&#8250;</span>
     </a>
     </div>
+
+    <a class="dlcard" href="https://github.com/vasudev-work/swadeshi-store-android/releases/download/v1.0/swadeshi-store.apk" target="_blank" rel="noopener">
+      <span class="dlogo">S</span>
+      <span class="dc"><b>Swadeshi Appstore for Android</b>
+        <span class="dm">1489 Indian apps in one app - offline list, no ads, no tracking.</span>
+        <span class="dm">APK &middot; Android 5.0+ &middot; ~19 MB</span></span>
+      <span class="dlbtn">Download</span>
+    </a>
 
     <div class="sec"><h2 id="secTitle">Government apps &amp; citizen services</h2><span class="go">&#8250;</span></div>
     <div class="carousel" id="carousel"></div>
@@ -339,6 +360,12 @@
       <p>UPI ID <b>vasudevupi@upi</b></p>
       <p><button class="btn" data-copy="vasudevupi@upi" style="max-width:200px">Copy UPI ID</button></p>
       <p><a href="upi://pay?pa=vasudevupi@upi&amp;pn=Vasudev&amp;cu=INR">Pay with a UPI app</a></p>
+    </div>
+    <div class="prose">
+      <h3>Get the Android app</h3>
+      <p>The same list as a native Java app. Works offline once opened, no ads, no analytics, no third-party SDKs.</p>
+      <p><a class="dlbtn" href="https://github.com/vasudev-work/swadeshi-store-android/releases/download/v1.0/swadeshi-store.apk" download="swadeshi-store.apk" style="text-decoration:none">Download APK</a></p>
+      <p style="font-size:12px">APK &middot; Android 5.0+ &middot; ~19 MB &middot; <a href="https://github.com/vasudev-work/swadeshi-store-android" target="_blank" rel="noopener">source</a></p>
     </div>
     <div class="prose">
       <h3>Contribute</h3>
