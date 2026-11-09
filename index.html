@@ -248,11 +248,46 @@
   .dlbtn:hover{background:var(--brand2)}
   .topdl{display:flex;align-items:center;gap:6px;background:var(--brand);color:#fff;border:0;
          border-radius:999px;padding:8px 14px;font-size:12.5px;font-weight:700;white-space:nowrap}
+  /* ---------- diwali ---------- */
+  .diya.top{width:22px;height:22px;margin-right:2px}
+  .diya{width:26px;height:26px;flex:none;display:block}
+  .diya .flame{transform-origin:50% 88%;animation:diyaflick 1.8s ease-in-out infinite}
+  .diya .flame2{transform-origin:50% 92%;animation:diyaflick 1.3s ease-in-out infinite reverse}
+  .diya .glow{animation:diyaglow 2.4s ease-in-out infinite}
+  @keyframes diyaflick{
+    0%,100%{transform:scale(1) translateY(0) rotate(-1deg);opacity:1}
+    35%{transform:scale(.93) translateY(-.6px) rotate(1.5deg);opacity:.92}
+    70%{transform:scale(1.04) translateY(.3px) rotate(-1.5deg);opacity:1}
+  }
+  @keyframes diyaglow{0%,100%{opacity:.18}50%{opacity:.30}}
+  .diwali{display:flex;align-items:center;justify-content:center;gap:12px;margin:2px 0 12px;
+          padding:10px 14px;border-radius:16px;border:1px solid rgba(255,176,32,.35);
+          background:linear-gradient(90deg,rgba(255,176,32,.10),rgba(255,106,0,.06));}
+  .diwali span{font-size:13.5px;font-weight:600;letter-spacing:.2px;
+               background:linear-gradient(90deg,#FFB020,#FF6A00);-webkit-background-clip:text;
+               background-clip:text;color:transparent}
+  .diwali .hindi{font-weight:700}
+  @media (prefers-reduced-motion: reduce){
+    .diya .flame,.diya .flame2,.diya .glow{animation:none}
+  }
 </style>
 </head>
 <body>
 
 <div class="top">
+  <svg class="diya top" viewBox="0 0 40 40" aria-hidden="true">
+        <ellipse cx="20" cy="35" rx="13" ry="2.6" fill="rgba(0,0,0,.35)"/>
+        <circle class="glow" cx="20" cy="17" r="11" fill="#FFB020" opacity=".18"/>
+        <path d="M6.5 24.5c0 5.6 6.1 8.8 13.5 8.8s13.5-3.2 13.5-8.8z" fill="#B4532A"/>
+        <path d="M6.5 24.5c0 5.6 6.1 8.8 13.5 8.8s13.5-3.2 13.5-8.8" fill="none" stroke="#8C3F20" stroke-width="1.1"/>
+        <ellipse cx="20" cy="24.5" rx="13.5" ry="3" fill="#D4703F"/>
+        <ellipse cx="20" cy="24.5" rx="8" ry="1.7" fill="#F2A268" opacity=".8"/>
+        <path class="flame" d="M20 7.5c3.2 5.2 5.2 8.4 5.2 11.4a5.2 5.2 0 0 1-10.4 0c0-3 2-6.2 5.2-11.4z" fill="url(#diyagrad)"/>
+        <path class="flame2" d="M20 12.5c1.6 2.6 2.6 4.2 2.6 5.7a2.6 2.6 0 0 1-5.2 0c0-1.5 1-3.1 2.6-5.7z" fill="#FFF3B0" opacity=".9"/>
+        <defs><radialGradient id="diyagrad" cx="50%" cy="72%" r="70%">
+          <stop offset="0" stop-color="#FFF6C2"/><stop offset=".5" stop-color="#FFB020"/><stop offset="1" stop-color="#FF6A00"/>
+        </radialGradient></defs>
+      </svg>
   <h1>Swadeshi Appstore</h1>
   <button class="ospill" id="osBtn">Android <span style="opacity:.6">&#9662;</span></button>
   <a class="topdl" href="https://github.com/vasudev-work/swadeshi-store-android/releases/download/v1.0/swadeshi-store.apk" target="_blank" rel="noopener" title="Download the Android app">Get app</a>
@@ -264,6 +299,35 @@
 <main>
   <!-- ================= APPS ================= -->
   <section id="v-apps">
+    <div class="diwali">
+      <svg class="diya" viewBox="0 0 40 40" aria-hidden="true">
+        <ellipse cx="20" cy="35" rx="13" ry="2.6" fill="rgba(0,0,0,.35)"/>
+        <circle class="glow" cx="20" cy="17" r="11" fill="#FFB020" opacity=".18"/>
+        <path d="M6.5 24.5c0 5.6 6.1 8.8 13.5 8.8s13.5-3.2 13.5-8.8z" fill="#B4532A"/>
+        <path d="M6.5 24.5c0 5.6 6.1 8.8 13.5 8.8s13.5-3.2 13.5-8.8" fill="none" stroke="#8C3F20" stroke-width="1.1"/>
+        <ellipse cx="20" cy="24.5" rx="13.5" ry="3" fill="#D4703F"/>
+        <ellipse cx="20" cy="24.5" rx="8" ry="1.7" fill="#F2A268" opacity=".8"/>
+        <path class="flame" d="M20 7.5c3.2 5.2 5.2 8.4 5.2 11.4a5.2 5.2 0 0 1-10.4 0c0-3 2-6.2 5.2-11.4z" fill="url(#diyagrad)"/>
+        <path class="flame2" d="M20 12.5c1.6 2.6 2.6 4.2 2.6 5.7a2.6 2.6 0 0 1-5.2 0c0-1.5 1-3.1 2.6-5.7z" fill="#FFF3B0" opacity=".9"/>
+        <defs><radialGradient id="diyagrad" cx="50%" cy="72%" r="70%">
+          <stop offset="0" stop-color="#FFF6C2"/><stop offset=".5" stop-color="#FFB020"/><stop offset="1" stop-color="#FF6A00"/>
+        </radialGradient></defs>
+      </svg>
+      <span><span class="hindi">दीपावली की शुभकामनाएँ</span> &middot; Happy Diwali</span>
+      <svg class="diya" viewBox="0 0 40 40" aria-hidden="true">
+        <ellipse cx="20" cy="35" rx="13" ry="2.6" fill="rgba(0,0,0,.35)"/>
+        <circle class="glow" cx="20" cy="17" r="11" fill="#FFB020" opacity=".18"/>
+        <path d="M6.5 24.5c0 5.6 6.1 8.8 13.5 8.8s13.5-3.2 13.5-8.8z" fill="#B4532A"/>
+        <path d="M6.5 24.5c0 5.6 6.1 8.8 13.5 8.8s13.5-3.2 13.5-8.8" fill="none" stroke="#8C3F20" stroke-width="1.1"/>
+        <ellipse cx="20" cy="24.5" rx="13.5" ry="3" fill="#D4703F"/>
+        <ellipse cx="20" cy="24.5" rx="8" ry="1.7" fill="#F2A268" opacity=".8"/>
+        <path class="flame" d="M20 7.5c3.2 5.2 5.2 8.4 5.2 11.4a5.2 5.2 0 0 1-10.4 0c0-3 2-6.2 5.2-11.4z" fill="url(#diyagrad)"/>
+        <path class="flame2" d="M20 12.5c1.6 2.6 2.6 4.2 2.6 5.7a2.6 2.6 0 0 1-5.2 0c0-1.5 1-3.1 2.6-5.7z" fill="#FFF3B0" opacity=".9"/>
+        <defs><radialGradient id="diyagrad" cx="50%" cy="72%" r="70%">
+          <stop offset="0" stop-color="#FFF6C2"/><stop offset=".5" stop-color="#FFB020"/><stop offset="1" stop-color="#FF6A00"/>
+        </radialGradient></defs>
+      </svg>
+    </div>
     <div class="chips" id="chips">
       <button class="chip on" data-chip="top">Top charts</button>
       <button class="chip" data-chip="govt">Government</button>
